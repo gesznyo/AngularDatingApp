@@ -28,10 +28,8 @@
       ]
     },
     "max-classes-per-file": false,
-    "max-line-length": [
-      true,
-      140
-    ],
+    "max-line-length": [true, 200],
+    "max-import-line-length": [true, 200],
     "member-ordering": [
       true,
       {
