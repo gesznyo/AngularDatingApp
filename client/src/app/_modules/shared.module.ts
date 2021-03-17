@@ -5,7 +5,13 @@ import { ToastrModule } from 'ngx-toastr';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FileUploadModule } from 'ng2-file-upload';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { huLocale } from 'ngx-bootstrap/locale';
+
+// The string MUST be lower case - even though the examples give it as enGb
+defineLocale('hu', huLocale);
 
 @NgModule({
   declarations: [],
@@ -20,6 +26,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     TabsModule.forRoot(),
     NgxGalleryModule,
     NgxSpinnerModule,
+    BsDatepickerModule.forRoot(),
     FileUploadModule
   ],
   exports: [
@@ -28,6 +35,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     TabsModule,
     NgxGalleryModule,
     NgxSpinnerModule,
+    BsDatepickerModule,
     FileUploadModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
