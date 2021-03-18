@@ -35,7 +35,7 @@
     >
       <img src="{{ user.photoUrl || './assets/user.png' }}" alt="{{ user.username }}" class="mr-2" />
       <a class="dropdown-toggle text-light" dropdownToggle
-        >Welcome {{ user.username | titlecase }}</a
+        >Welcome {{ user.knownAs | titlecase }}</a
       >
       <div class="dropdown-menu mt-3" *dropdownMenu>
         <a routerLink="/member/edit" class="dropdown-item">Edit Profile</a>
@@ -62,7 +62,7 @@
         class="form-control mr-sm-2"
         type="password"
         placeholder="Password"
-        name="username"
+        name="password"
         [(ngModel)]="model.password"
       />
       <button class="btn btn-success my-2 my-sm-0" type="submit">Login</button>

@@ -9,6 +9,9 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FileUploadModule } from 'ng2-file-upload';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { huLocale } from 'ngx-bootstrap/locale';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { TimeagoModule } from 'ngx-timeago';
 
 // The string MUST be lower case - even though the examples give it as enGb
 defineLocale('hu', huLocale);
@@ -26,8 +29,11 @@ defineLocale('hu', huLocale);
     TabsModule.forRoot(),
     NgxGalleryModule,
     NgxSpinnerModule,
+    PaginationModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    FileUploadModule
+    ButtonsModule.forRoot(),
+    FileUploadModule,
+    TimeagoModule.forRoot()
   ],
   exports: [
     BsDropdownModule,
@@ -35,8 +41,11 @@ defineLocale('hu', huLocale);
     TabsModule,
     NgxGalleryModule,
     NgxSpinnerModule,
+    PaginationModule,
     BsDatepickerModule,
-    FileUploadModule
+    ButtonsModule,
+    FileUploadModule,
+    TimeagoModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
