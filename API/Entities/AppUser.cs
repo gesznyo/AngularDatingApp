@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using API.Extensions;
 
 namespace API.Entities
 {
-    public class AppUser
+  public class AppUser
     {
         public int Id { get; set; }
         public string UserName { get; set; }
@@ -21,7 +20,7 @@ namespace API.Entities
         public string City { get; set; }
         public string Country { get; set; }
         public ICollection<Photo> Photos { get; set; }
-
-        // public int GetAge() => DateOfBirth.CalculateAge();
+        public ICollection<UserLike> LikedByUsers { get; set; }
+        public ICollection<UserLike> LikedUsers { get; set; }
   }
 }
