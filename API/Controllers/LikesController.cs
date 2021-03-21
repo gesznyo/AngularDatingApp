@@ -49,7 +49,7 @@ namespace API.Controllers
       return BadRequest("Failed to like user");
     }
 
-
+    // GET api/likes/
     [HttpGet]
     public async Task<ActionResult<IEnumerable<LikeDto>>> GetUserLikes([FromQuery] LikesParams likesParams)
     {
