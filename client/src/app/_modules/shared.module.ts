@@ -12,6 +12,7 @@ import { huLocale } from 'ngx-bootstrap/locale';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TimeagoModule } from 'ngx-timeago';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 // The string MUST be lower case - even though the examples give it as enGb
 defineLocale('hu', huLocale);
@@ -33,7 +34,8 @@ defineLocale('hu', huLocale);
     BsDatepickerModule.forRoot(),
     ButtonsModule.forRoot(),
     FileUploadModule,
-    TimeagoModule.forRoot()
+    TimeagoModule.forRoot(),
+    ModalModule.forRoot(),
   ],
   exports: [
     BsDropdownModule,
@@ -45,7 +47,8 @@ defineLocale('hu', huLocale);
     BsDatepickerModule,
     ButtonsModule,
     FileUploadModule,
-    TimeagoModule
+    TimeagoModule,
+    ModalModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

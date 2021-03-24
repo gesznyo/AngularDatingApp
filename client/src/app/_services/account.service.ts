@@ -38,6 +38,10 @@ export class AccountService {
   }
 
   setCurrentUser(user: User) {
+    user.roles = [];
+    const roles = this.getDecodedToken(user.token).role;
+    Array.isArray(roles) ? (user.roles = roles) : user.roles.push(roles);
+
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
   }
@@ -45,5 +49,16 @@ export class AccountService {
   logout() {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
+  }
+
+  getDecodedToken(token: string) {
+    // The token comes in three parts:
+    // 0 - HEADER:ALGORITHM & TOKEN TYPE
+    // 1 - PAYLOAD:DATA
+    // 2 - VERIFY SIGNATURE
+
+    // The atob() method decodes a base-64 encoded string.
+
+    return JSON.parse(atob(token.split('.')[1]));
   }
 }
