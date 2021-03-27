@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { Group } from '../_models/group';
 import { Message } from '../_models/message';
 import { User } from '../_models/user';
+import { BusyService } from './busy.service';
 import { messageContainer } from './custom.types';
 import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 
@@ -20,9 +21,10 @@ export class MessageService {
   private messageThreadSouce = new BehaviorSubject<Message[]>([]);
   messageThread$ = this.messageThreadSouce.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private busyService: BusyService) {}
 
   createHubConnection(user: User, otherUsername: string) {
+    this.busyService.busy();
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(this.hubUrl + 'message?user=' + otherUsername, {
         accessTokenFactory: () => user.token,
@@ -30,7 +32,12 @@ export class MessageService {
       .withAutomaticReconnect()
       .build();
 
-    this.hubConnection.start().catch((error) => console.log(error));
+    this.hubConnection
+      .start()
+      .catch((error) => console.log(error))
+      .finally(() => {
+        this.busyService.idle();
+      });
 
     this.hubConnection.on('ReceiveMessageThread', (messages) => {
       this.messageThreadSouce.next(messages);
@@ -58,6 +65,7 @@ export class MessageService {
 
   stopHubConnection() {
     if (this.hubConnection) {
+      this.messageThreadSouce.next([]);
       this.hubConnection.stop();
     }
   }
